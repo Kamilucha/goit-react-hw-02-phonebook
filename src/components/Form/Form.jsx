@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import { Component } from "react"
 import shortid from "shortid"
-import { Input, Label, FormContainer, Button} from "./Form.styled"
+import { Input, Label, FormContainer, Button } from "./Form.styled"
 
 
 class Form extends Component{
@@ -12,6 +13,9 @@ state = {
     nameInputId = shortid.generate()
     telInputId = shortid.generate()
 
+ static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+}
 
 handleChange = e => {
     const { name, value} = e.currentTarget
@@ -25,7 +29,7 @@ handleSubmit = e => {
     this.props.onSubmit(this.state)
 
     this.reset()
-}
+}   
     
 reset = () => {
     this.setState({

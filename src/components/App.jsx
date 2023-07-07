@@ -17,11 +17,10 @@ state = {
   filter: '',
 }
   
-  itemId = shortid.generate()
 
   formSubmitHandler = data => {
     const { name, number } = data
-    const findContact = this.state.contacts.find((contact) => contact.name.toLowerCase() === name.toLowerCase() && contact.number === number);
+    const findContact = this.state.contacts.find((contact) => contact.name.toLowerCase() === name.toLowerCase() || contact.number === number);
 
     if (findContact) {
       alert (`${name} is already in contact.`)
@@ -29,7 +28,7 @@ state = {
     }
 
     const newContact = {
-      id: this.itemId,
+      id: shortid.generate(),
       ...data,
     }
 
